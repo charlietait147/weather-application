@@ -1,0 +1,31 @@
+
+    .background-image {
+        background: url("../assets/images/background-image.jpg");
+        background-position: center;
+        background-size: cover;
+        height: 375px;
+        overflow: hidden;
+        max-width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center
+    }
+
+    @media screen and (min-width: 768px){
+        .background-image{
+            height: 600px;
+        }
+        
+    }
+
+    .background-overlay{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgba(50, 50, 50, 0.5);
+        bottom: 0;
+    }
+
+
