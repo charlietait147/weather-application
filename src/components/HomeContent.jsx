@@ -1,7 +1,15 @@
-
+import WeatherCard from "./WeatherCard";
 import "./HomeContent.css";
-const HomeContent = ({dummyWeatherData}) => {
-    {console.log(dummyWeatherData)};
+import WeatherContent from "./WeatherContent";
+const HomeContent = ({days}) => {
+
+    //Passed down to the WeatherCard component to render the next 4 days weather
+    const weatherBoxes = days.slice(1).map((day) => (
+        <WeatherCard {...day} key={new Date(day.date).getDay()} />
+      ));
+
+    //Passed down to the WeatherContent component to render the current day weather
+    const weatherCurrentDay = days[0];
 
   return (
     <div className="background-image">
@@ -21,6 +29,10 @@ const HomeContent = ({dummyWeatherData}) => {
           Search
         </button>
       </form>
+      <div className="weather-container">
+        <WeatherContent weatherCurrentDay={weatherCurrentDay} />
+        {weatherBoxes}
+      </div>
     </div>
   );
 };
