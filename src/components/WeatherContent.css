@@ -1,0 +1,22 @@
+.large-container{
+    display: flex;
+}
+
+@media screen and (min-width: 576px){
+    .large-container{
+        justify-content: center;
+    }
+}
+
+.small-container{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+
+@media screen and (min-width: 576px){
+    .small-container{
+        flex-direction: row;
+        align-items: center;
+    }
+}
