@@ -1,7 +1,8 @@
 import WeatherCard from "./WeatherCard";
 import "./HomeContent.css";
 import WeatherContent from "./WeatherContent";
-const HomeContent = ({days}) => {
+const HomeContent = ({days, searchBarText, setSearchBarText}) => {
+
 
     //Passed down to the WeatherCard component to render the next 4 days weather
     const weatherBoxes = days.slice(1).map((day) => (
@@ -9,7 +10,9 @@ const HomeContent = ({days}) => {
       ));
 
     //Passed down to the WeatherContent component to render the current day weather
-    const weatherCurrentDay = days[0];
+    const currentWeather = days[0];
+    const {date, icon, temp, weather_desc} = currentWeather;
+
 
   return (
     <div className="background-image">
@@ -19,7 +22,10 @@ const HomeContent = ({days}) => {
         <input
           className="form-control mr-sm-2 position-relative"
           type="search"
+          name="search"
           placeholder="Location name..."
+          value = {searchBarText}
+          onChange={(e) => setSearchBarText(e.target.value)}
           aria-label="Search"
         />
         <button
@@ -30,7 +36,10 @@ const HomeContent = ({days}) => {
         </button>
       </form>
       <div className="weather-container">
-        <WeatherContent weatherCurrentDay={weatherCurrentDay} />
+        <WeatherContent date = {date} 
+                        icon = {icon}
+                        temp = {temp}
+                        weather_desc = {weather_desc}/>
         {weatherBoxes}
       </div>
     </div>

@@ -3,6 +3,8 @@ import Footer from "./components/Footer";
 import HomeContent from "./components/HomeContent";
 import dummyWeatherData from "../data/dummyWeatherData.json";
 
+import { useState } from "react";
+
 const updateState = (data) => {
   const tempDays = [];
   const dayIndices = getDayIndices(data);
@@ -45,16 +47,20 @@ const days = updateState(dummyWeatherData.dublin);
 
 console.log(days);
 
-
-
-
 const App = () => {
 
-
+  const [searchBarText, setSearchBarText] = useState("");
+  
   return (
     <>
-      <NavBar />
-      <HomeContent days= {days} />
+      <NavBar 
+        searchBarText = {searchBarText}
+        setSearchBarText = {setSearchBarText} />
+      <HomeContent 
+        days= {days} 
+        searchBarText = {searchBarText}
+        setSearchBarText = {setSearchBarText}
+      />
       <Footer />
     </>
   );
