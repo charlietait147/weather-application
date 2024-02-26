@@ -5,6 +5,7 @@ import { getWeatherDataService } from "./services/weatherdata.service";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomeContent from "./components/HomeContent";
+import FavouriteLocationContent from "./components/FavouriteLocationContent";
 // import dummyWeatherData from "../data/dummyWeatherData.json";
 // const days = updateState(dummyWeatherData.dublin);
 
@@ -38,6 +39,7 @@ const App = () => {
         searchBarText={searchBarText}
         setSearchBarText={setSearchBarText}
       />
+      {/* <FavouriteLocationContent /> */}
       <Footer />
     </>
   );

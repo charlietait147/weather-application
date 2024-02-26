@@ -49,8 +49,8 @@ const HomeContent = ({ days, searchBarText, setSearchBarText }) => {
           </button>
         </form>
       </div>
-
-      <div className="weather-container">
+      {submitted && <div className="weather-container">
+        {/* <div className="weather-container-overlay"></div> */}
         {submitted && ( // if submitted is true then return WeatherContent component
           <WeatherContent
             date={date}
@@ -66,7 +66,7 @@ const HomeContent = ({ days, searchBarText, setSearchBarText }) => {
             ))}
           </div>
         )}
-      </div>
+      </div> }
     </>
   );
 };
