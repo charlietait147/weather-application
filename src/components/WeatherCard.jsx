@@ -1,16 +1,12 @@
 import PropTypes from "prop-types";
 const WeatherCard = ({ date, icon, temp, weather_desc }) => {
   return (
-    // <div className="container">
-      
-        <div className="d-flex flex-column align-items-center py-4">
-          <p className="text-center">{date}</p>
-          <img src={`/assets/weather-icons/${icon}.svg`}></img>
-          <p>{temp}</p>
-          <p>{weather_desc}</p>
-        </div>
-     
-    // </div>
+    <div className="d-flex flex-column align-items-center py-4">
+      <p className="text-center">{date}</p>
+      <img src={`/assets/weather-icons/${icon}.svg`}></img>
+      <p>{temp}</p>
+      <p>{weather_desc}</p>
+    </div>
   );
 };
 
@@ -22,5 +18,3 @@ WeatherCard.propTypes = {
 };
 
 export default WeatherCard;
-
-// col px-2 py-1 d-flex flex-column align-items-center
