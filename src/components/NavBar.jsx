@@ -1,5 +1,50 @@
 import logo from "../assets/logo/logo.png";
-const NavBar = () => {
+import searchIcon from "../assets/icons/search.svg";
+import { useState } from "react";
+
+const NavBar = ({
+  setErrorMessage,
+  // getWeatherData,
+  weatherData,
+  searchBarText,
+  setSearchBarText,
+}) => {
+  const [searchInput, setSearchInput] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const clickHandler = async (e) => {
+    e.preventDefault();
+    console.log(searchInput);
+
+    if (searchInput.trim() === "") { 
+      setErrorMessage("Please enter a valid location");
+      return;
+    }
+
+    setIsClicked(true);
+    setSearchBarText(searchInput);
+
+    // setIsLoading(true);
+   
+
+    // try {
+    //   const response = await getWeatherData(); // Pass searchInput to getWeatherData
+    //   console.log(response);
+    // } catch (error) {
+    //   console.error("Error fetching data" + error);
+    //   setErrorMessage("Data unavailable for this location");
+    //   setIsLoading(false);
+    // }
+
+    // setIsLoading(false);
+    // setErrorMessage("");
+  };
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">
       <a className="navbar-brand" href="#">
@@ -23,7 +68,10 @@ const NavBar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      <div
+        className="collapse navbar-collapse justify-content-between"
+        id="navbarSupportedContent"
+      >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item px-2">
             <a className="nav-link active" aria-current="page" href="#">
@@ -47,20 +95,22 @@ const NavBar = () => {
             ></div>
           </li>
         </ul>
-        <form className="form-inline my-2 my-lg-0 d-none d-lg-block d-lg-flex">
+        <div className="d-none d-lg-flex align-items-center  ">
           <input
             className="form-control mr-sm-2 me-3"
             type="search"
             placeholder="Search"
             aria-label="Search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
+          <img
+            src={searchIcon}
+            alt="search icon"
+            width={25}
+            onClick={clickHandler}
+          />
+        </div>
       </div>
     </nav>
   );

@@ -32,12 +32,12 @@
         display: none;
     }
 
-    .weather-container{
+    #weather-container{
         background-color:rgb(248, 252, 241);
     }
 
     @media screen and (min-width: 576px) {
-        .weather-container{
+    #weather-container{
             background: url("../assets/images/cloud-background.jpg");
             background-position: center;
             background-size: cover;
@@ -45,6 +45,12 @@
             overflow: hidden;
             max-width: 100%;
             position: relative;
+        }
+    }
+
+    @media screen and (min-width: 1020px) {
+        #weather-container{
+            height: 700px;
         }
     }
 

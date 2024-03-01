@@ -1,29 +1,58 @@
-
 import { useState } from "react";
 import WeatherCard from "./WeatherCard";
 import "./HomeContent.css";
 import WeatherContent from "./WeatherContent";
+import dataUnavailableImg from "../assets/images/data-unavailable-image.jpg";
 
-const HomeContent = ({days, searchBarText, setSearchBarText, getWeatherData, countryName}) => {
+
+const HomeContent = ({
+  weatherData,
+  countryName,
+  errorMessage,
+  setSearchBarText,
+  
+}) => {
   const [submitted, setSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault(); // prevent default form submission
     setSubmitted(true);
-    setIsLoading(true); // set isLoading to true before calling getWeatherData function
+    setSearchBarText(searchInput); // set searchBarText to the value of searchBarText
+    // setIsLoading(true); // set isLoading to true before calling getWeatherData function
 
-    try {
-      await getWeatherData(); // call getWeatherData function
-    } catch(error) {
-      console.error("Error fetching data" + error); // log error message
-    }
-   
-    setIsLoading(false); // set isLoading to false after calling getWeatherData function
+
+    // try {
+    //   await getWeatherData(searchBarText); // call getWeatherData function
+    // } catch (error) {
+    //   console.error("Error fetching data" + error);
+    //   setErrorMessage("Data unavailable for this location"); // log error message
+    //   setIsLoading(false);
+    // }
+
+    // setIsLoading(false); // set isLoading to false after calling getWeatherData function
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>; // if isLoading is true then return Loading ...
+ 
+
+  // if (isLoading) {
+  //   return <div>Loading ...</div>; // if isLoading is true then return Loading ...
+  // }
+
+  if (errorMessage) {
+    return (
+      <div className="container py-4 vh-100 d-flex flex-column justify-content-center align-items-center">
+        <h1 className="pb-3">{errorMessage}</h1>
+        <img
+          src={dataUnavailableImg}
+          alt="Data unavailable"
+          className="img-thumbnail" 
+          style={{width: 400, height: 400}}/>
+
+      </div>
+    ); // if errorMessage is true then return the error message
   }
 
   if (!submitted) {
@@ -42,13 +71,14 @@ const HomeContent = ({days, searchBarText, setSearchBarText, getWeatherData, cou
             type="search"
             name="search"
             placeholder="Location name..."
-            value={searchBarText}
-            onChange={(e) => setSearchBarText(e.target.value)}
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
             aria-label="Search"
           />
           <button
             className="btn btn-success my-3 position-relative w-50"
             type="submit"
+            disabled={!searchInput} // disable button if searchBarText is empty
           >
             Search
           </button>
@@ -57,12 +87,19 @@ const HomeContent = ({days, searchBarText, setSearchBarText, getWeatherData, cou
     );
   }
 
-  if (days.length === 0) {
-    // if days is an empty array then return Loading ...
-    return <div>Loading...</div>;
-  }
+  // if (weatherData.length === 0) {
+  //   // if days is an empty array then return Loading ...
+  //   return <div>Loading...</div>;
+  // }
 
-  const currentDay = days[0]; //set currentDay to first element in array
+  // console.log(weatherData[0]);
+
+  let currentDay; // Initialize currentDay variable
+
+  if (currentDay !== undefined) {
+    currentDay = weatherData[0];
+  }
+  
   if (!currentDay) {
     return <div>No weather available</div>;
   }
@@ -70,7 +107,7 @@ const HomeContent = ({days, searchBarText, setSearchBarText, getWeatherData, cou
   const { date, icon, temp, weather_desc } = currentDay; // destructure date, icon, temp and weather_desc from currentDay
 
   return (
-    <div className="weather-container">
+    <div id="weather-container">
       {/* <div className="weather-container-overlay"></div> */}
       {submitted && ( // if submitted is true then return WeatherContent component
         <WeatherContent
@@ -83,7 +120,7 @@ const HomeContent = ({days, searchBarText, setSearchBarText, getWeatherData, cou
       )}
       {submitted && ( // if submitted is true then return WeatherCard component
         <div className="row row-cols-2 row-cols-sm-4">
-          {days.slice(1).map((day) => (
+          {weatherData.slice(1).map((day) => (
             <WeatherCard {...day} key={new Date(day.date).getDay()} />
           ))}
         </div>

@@ -8,5 +8,15 @@ export default defineConfig({
   plugins: [react()],
   define: {
     'process.env': process.env
-  }
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./tests/config/setup.js"],
+    testMatch: ["./tests/**/*.test.jsx$?"],
+    globals: true,
+    coverage: {
+        provider: "istanbul", 
+    },
+},
+
 })
