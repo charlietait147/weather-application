@@ -1,8 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import WeatherContent from "../src/components/WeatherContent";
-import testWeatherData from "./data/testWeatherData.json";
-
-// const getWeatherData = vi.fn().mockResolvedValue(testWeatherData);
 
 describe("WeatherContentTests", () => {
   describe("WeatherData tests", () => {

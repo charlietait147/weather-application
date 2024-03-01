@@ -3,7 +3,7 @@ const WeatherCard = ({ date, icon, temp, weather_desc }) => {
   return (
     <div className="d-flex flex-column align-items-center py-4">
       <p className="text-center">{date}</p>
-      <img src={`/assets/weather-icons/${icon}.svg`}></img>
+      <img src={`/assets/weather-icons/${icon}.svg`} alt="Weather Icon"></img>
       <p>{temp}</p>
       <p>{weather_desc}</p>
     </div>

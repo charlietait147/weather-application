@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -126,7 +126,12 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,7 +170,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -199,7 +209,7 @@ import HomeContent from "./components/HomeContent";
 import FavouriteLocationContent from "./components/FavouriteLocationContent";
 &nbsp;
 const App = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-  const [days, setDays] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+  const [weatherData, setWeatherData] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
   const [countryName, setCountryName] = <span class="cstat-no" title="statement not covered" >useState("");</span>
   const [errorMessage, setErrorMessage] = <span class="cstat-no" title="statement not covered" >useState("");</span>
   const [searchBarText, setSearchBarText] = <span class="cstat-no" title="statement not covered" >useState(""); // set searchBarText to an empty string</span>
@@ -215,7 +225,7 @@ const App = <span class="cstat-no" title="statement not covered" ><span class="f
 <span class="cstat-no" title="statement not covered" >      console.log(response);</span>
       const updatedDays = <span class="cstat-no" title="statement not covered" >updateState(response); // call updateState helper function on the response</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      setDays(updatedDays); // set the day state to updatedDays</span>
+<span class="cstat-no" title="statement not covered" >      setWeatherData(updatedDays); // set the day state to updatedDays</span>
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >      if (error.response &amp;&amp; error.response.status === 404) {</span>
 <span class="cstat-no" title="statement not covered" >        setErrorMessage("Invalid location");</span>
@@ -223,22 +233,27 @@ const App = <span class="cstat-no" title="statement not covered" ><span class="f
 <span class="cstat-no" title="statement not covered" >      console.error("Error fetching data", error);</span>
 <span class="cstat-no" title="statement not covered" >      setErrorMessage("Data unavailable for this location");</span>
 <span class="cstat-no" title="statement not covered" >      setCountryName(""); // Clear the country name</span>
-<span class="cstat-no" title="statement not covered" >      setDays([]); // Clear the days array</span>
+<span class="cstat-no" title="statement not covered" >      setWeatherData([]); // Clear the days array</span>
     }
   };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (searchBarText !== "") {</span>
+<span class="cstat-no" title="statement not covered" >      getWeatherData();</span>
+    }
+  }, [searchBarText]); 
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;&gt;
       &lt;NavBar
         setErrorMessage={setErrorMessage}
-        getWeatherData={getWeatherData}
+        weatherData={weatherData}
         searchBarText={searchBarText}
         setSearchBarText={setSearchBarText}
       /&gt;
       &lt;HomeContent
-        days={days}
+        weatherData={weatherData}
         countryName={countryName}
-        getWeatherData={getWeatherData}
         setErrorMessage={setErrorMessage}
         errorMessage={errorMessage}
         searchBarText={searchBarText}
@@ -259,7 +274,7 @@ export default App;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-29T12:56:50.840Z
+                at 2024-03-01T14:58:30.507Z
             </div>
         <script src="../prettify.js"></script>
         <script>
