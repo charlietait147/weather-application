@@ -4,18 +4,13 @@ import { useState } from "react";
 
 const NavBar = ({
   setErrorMessage,
-  // getWeatherData,
-  weatherData,
-  searchBarText,
   setSearchBarText,
 }) => {
   const [searchInput, setSearchInput] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
   const clickHandler = async (e) => {
     e.preventDefault();
-    console.log(searchInput);
 
     if (searchInput.trim() === "") { 
       setErrorMessage("Please enter a valid location");
@@ -24,26 +19,7 @@ const NavBar = ({
 
     setIsClicked(true);
     setSearchBarText(searchInput);
-
-    // setIsLoading(true);
-   
-
-    // try {
-    //   const response = await getWeatherData(); // Pass searchInput to getWeatherData
-    //   console.log(response);
-    // } catch (error) {
-    //   console.error("Error fetching data" + error);
-    //   setErrorMessage("Data unavailable for this location");
-    //   setIsLoading(false);
-    // }
-
-    // setIsLoading(false);
-    // setErrorMessage("");
   };
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">

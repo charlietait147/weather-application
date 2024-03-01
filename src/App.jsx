@@ -46,16 +46,12 @@ const App = () => {
     <>
       <NavBar
         setErrorMessage={setErrorMessage}
-        weatherData={weatherData}
-        searchBarText={searchBarText}
         setSearchBarText={setSearchBarText}
       />
       <HomeContent
         weatherData={weatherData}
         countryName={countryName}
-        setErrorMessage={setErrorMessage}
         errorMessage={errorMessage}
-        searchBarText={searchBarText}
         setSearchBarText={setSearchBarText}
       />
       {/* )} */}

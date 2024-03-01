@@ -4,42 +4,20 @@ import "./HomeContent.css";
 import WeatherContent from "./WeatherContent";
 import dataUnavailableImg from "../assets/images/data-unavailable-image.jpg";
 
-
 const HomeContent = ({
   weatherData,
   countryName,
   errorMessage,
   setSearchBarText,
-  
 }) => {
   const [submitted, setSubmitted] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault(); // prevent default form submission
     setSubmitted(true);
     setSearchBarText(searchInput); // set searchBarText to the value of searchBarText
-    // setIsLoading(true); // set isLoading to true before calling getWeatherData function
-
-
-    // try {
-    //   await getWeatherData(searchBarText); // call getWeatherData function
-    // } catch (error) {
-    //   console.error("Error fetching data" + error);
-    //   setErrorMessage("Data unavailable for this location"); // log error message
-    //   setIsLoading(false);
-    // }
-
-    // setIsLoading(false); // set isLoading to false after calling getWeatherData function
   };
-
- 
-
-  // if (isLoading) {
-  //   return <div>Loading ...</div>; // if isLoading is true then return Loading ...
-  // }
 
   if (errorMessage) {
     return (
@@ -48,9 +26,9 @@ const HomeContent = ({
         <img
           src={dataUnavailableImg}
           alt="Data unavailable"
-          className="img-thumbnail" 
-          style={{width: 400, height: 400}}/>
-
+          className="img-thumbnail"
+          style={{ width: 400, height: 400 }}
+        />
       </div>
     ); // if errorMessage is true then return the error message
   }
@@ -87,19 +65,16 @@ const HomeContent = ({
     );
   }
 
-  // if (weatherData.length === 0) {
-  //   // if days is an empty array then return Loading ...
-  //   return <div>Loading...</div>;
-  // }
-
-  // console.log(weatherData[0]);
+  // Initialize currentDay variable
 
   let currentDay; // Initialize currentDay variable
 
-  if (currentDay !== undefined) {
-    currentDay = weatherData[0];
+  if (weatherData !== null) { // if weatherData is not null
+    if (weatherData && weatherData.length > 0) { // if weatherData is not null and weatherData length is greater than 0
+      currentDay = weatherData[0];
+    }
   }
-  
+
   if (!currentDay) {
     return <div>No weather available</div>;
   }
