@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import { updateState } from "./utils/WeatherDataHelper";
 import { getWeatherDataService } from "./services/weatherdata.service";
 
@@ -40,24 +42,36 @@ const App = () => {
     if (searchBarText !== "") {
       getWeatherData();
     }
-  }, [searchBarText]); 
+  }, [searchBarText]);
 
   return (
-    <>
-      <NavBar
-        setErrorMessage={setErrorMessage}
-        setSearchBarText={setSearchBarText}
-      />
-      <HomeContent
-        weatherData={weatherData}
-        countryName={countryName}
-        errorMessage={errorMessage}
-        setSearchBarText={setSearchBarText}
-      />
-      {/* )} */}
-      {/* <FavouriteLocationContent /> */}
-      <Footer />
-    </>
+    <Router>
+      <>
+        <NavBar
+          setErrorMessage={setErrorMessage}
+          setSearchBarText={setSearchBarText}
+        />
+        <Routes>
+          <Route
+            index
+            element={
+              <HomeContent
+                weatherData={weatherData}
+                countryName={countryName}
+                errorMessage={errorMessage}
+                setSearchBarText={setSearchBarText}
+              />
+            }
+          />
+          {/* )} */}
+          <Route
+            path="favourite-locations"
+            element={<FavouriteLocationContent />}
+          />
+        </Routes>
+        <Footer />
+      </>
+    </Router>
   );
 };
 

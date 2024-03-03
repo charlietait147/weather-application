@@ -1,18 +1,16 @@
 import logo from "../assets/logo/logo.png";
 import searchIcon from "../assets/icons/search.svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const NavBar = ({
-  setErrorMessage,
-  setSearchBarText,
-}) => {
+const NavBar = ({ setErrorMessage, setSearchBarText }) => {
   const [searchInput, setSearchInput] = useState("");
   const [isClicked, setIsClicked] = useState(false);
 
   const clickHandler = async (e) => {
     e.preventDefault();
 
-    if (searchInput.trim() === "") { 
+    if (searchInput.trim() === "") {
       setErrorMessage("Please enter a valid location");
       return;
     }
@@ -50,25 +48,34 @@ const NavBar = ({
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item px-2">
-            <a className="nav-link active" aria-current="page" href="#">
+            <Link className="nav-link active" to="/" aria-current="page">
               Home
-            </a>
+            </Link>
+          </li>
+          <li className="nav-item px-2">
+            <Link className="nav-link active" to="/favourite-locations" aria-current="page">
+              My Favourite Locations
+            </Link>
           </li>
           <li className="nav-item dropdown px-2">
-            <a
+            <Link
               className="nav-link dropdown-toggle"
-              href="#"
               id="navbarDropdown"
               data-bs-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
+              role="link"
+              to="/favourite-locations"
             >
               My Saved Locations
-            </a>
-            <div
-              className="dropdown-menu"
-              aria-labelledby="navbarDropdown"
-            ></div>
+            </Link>
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <Link className="dropdown-item">
+                  {localStorage.getItem("favourite")}
+                </Link>
+              </li>
+            </ul>
           </li>
         </ul>
         <div className="d-none d-lg-flex align-items-center  ">
