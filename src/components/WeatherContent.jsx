@@ -6,7 +6,6 @@ const WeatherContent = ({ date, icon, temp, weather_desc, countryName }) => {
 
   const clickHandler = () => {
     localStorage.setItem("favourite", countryName); // set countryName to localStorage
-    //add countryName to Favourite
   }
   return (
     <div className="container pt-4 px-4">
@@ -38,22 +37,3 @@ WeatherContent.propTypes = {
 };
 
 export default WeatherContent;
-
-// const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-// const toggleDropdown = () => {
-//   setIsDropdownOpen(!isDropdownOpen);
-// };
-
-{/* <ul className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`} aria-labelledby="navbarDropdown"> */}
-
-{/* <Link
-className="nav-link dropdown-toggle"
-id="navbarDropdown"
-data-bs-toggle="dropdown"
-aria-haspopup="true"
-aria-expanded={isDropdownOpen}
-role="link"
-to="/favourite-locations"
-onClick={toggleDropdown}
-> */}

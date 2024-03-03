@@ -1,22 +1,16 @@
 import logo from "../assets/logo/logo.png";
 import searchIcon from "../assets/icons/search.svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const NavBar = ({ setErrorMessage, setSearchBarText }) => {
+const NavBar = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [isClicked, setIsClicked] = useState(false);
+  const navigate = useNavigate();
 
-  const clickHandler = async (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
 
-    if (searchInput.trim() === "") {
-      setErrorMessage("Please enter a valid location");
-      return;
-    }
-
-    setIsClicked(true);
-    setSearchBarText(searchInput);
+    navigate(`/weather/${searchInput}`);
   };
 
   return (
@@ -71,7 +65,7 @@ const NavBar = ({ setErrorMessage, setSearchBarText }) => {
             </Link>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <Link className="dropdown-item">
+                <Link to={`weather/${localStorage.getItem("favourite")}`} className="dropdown-item">
                   {localStorage.getItem("favourite")}
                 </Link>
               </li>
@@ -86,13 +80,19 @@ const NavBar = ({ setErrorMessage, setSearchBarText }) => {
             aria-label="Search"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
+
           />
-          <img
-            src={searchIcon}
-            alt="search icon"
-            width={25}
-            onClick={clickHandler}
-          />
+          <button
+            disabled={!searchInput}
+            onClick={handleSearch}
+            style={{ border: "none", background: "none", cursor: "pointer" }}
+          >
+            <img
+              src={searchIcon}
+              alt="search icon"
+              width={25}
+            />
+          </button>
         </div>
       </div>
     </nav>
@@ -100,3 +100,5 @@ const NavBar = ({ setErrorMessage, setSearchBarText }) => {
 };
 
 export default NavBar;
+
+
