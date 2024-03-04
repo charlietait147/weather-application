@@ -8,7 +8,7 @@ const HomeContent = () => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault(); // prevent default form submission
     navigate(`/weather/${searchInput}`);
   };

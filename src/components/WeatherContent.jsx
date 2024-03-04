@@ -5,7 +5,15 @@ import "./WeatherContent.css";
 const WeatherContent = ({ date, icon, temp, weather_desc, countryName }) => {
 
   const clickHandler = () => {
-    localStorage.setItem("favourite", countryName); // set countryName to localStorage
+    // localStorage.setItem("favourite", countryName); // set countryName to localStorage
+    const favourites = JSON.parse(localStorage.getItem("favourites")) || []; // Retrieve existing favourites from local storage or initialize an empty array
+      // Handling duplicate favourites
+      // If the favourites array contains duplicate countryNames, remove the duplicates
+    if (!favourites.includes(countryName)) {
+      favourites.push(countryName); // Add the current countryName to the favourites array
+      localStorage.setItem("favourites", JSON.stringify(favourites)); // Store the updated favourites array in local storage
+    }
+   
   }
   return (
     <div className="container pt-4 px-4">

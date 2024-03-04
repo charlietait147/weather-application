@@ -21,7 +21,7 @@ describe("WeatherCardTests", () => {
             />
         );
         //Assert
-        //3. Check that the date, icon, temp and weather_desc are displayed
+        //3. Check that the date, 
         expect(getByText(date)).toBeInTheDocument();
         expect(getByAltText("Weather Icon")).toBeInTheDocument();
         expect(getByText(temp.toString())).toBeInTheDocument();

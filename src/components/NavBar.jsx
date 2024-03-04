@@ -1,9 +1,17 @@
 import logo from "../assets/logo/logo.png";
 import searchIcon from "../assets/icons/search.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const [favourites, setFavourites] = useState([]);
+
+  useEffect(() => {
+    const storedFavourites =
+      JSON.parse(localStorage.getItem("favourites")) || []; // Retrieve existing favourites from local storage or initialize an empty array
+    setFavourites(storedFavourites); // Set the favourites state to the stored favourites
+  }, []);
+
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
 
@@ -64,11 +72,12 @@ const NavBar = () => {
               My Saved Locations
             </Link>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <Link to={`weather/${localStorage.getItem("favourite")}`} className="dropdown-item">
-                  {localStorage.getItem("favourite")}
-                </Link>
+              {favourites.map((favourite, index) => (
+              <li key={index}>
+                <Link to={`weather/${favourite}`} className="dropdown-item">
+                  {favourite}</Link>
               </li>
+              ))}
             </ul>
           </li>
         </ul>
