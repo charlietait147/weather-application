@@ -15,7 +15,7 @@ export const updateState = (data) => {
   };
   // returns array with Indices of the next five days in the list from the API data (every day at 12:00 pm)
   const getDayIndices = (data) => {
-    console.log(data);
+    // console.log(data);
     let dayIndices = [0];
     let currentDay = data.list[0].dt_txt.slice(8, 10);
   

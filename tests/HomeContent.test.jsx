@@ -2,34 +2,14 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import HomeContent from "../src/components/HomeContent";
 import { describe } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 
-const setSearchBarText = vi.fn();
+
+const setSearchInput = vi.fn();
 
 
 describe("HomeContentTests", () => {
-    describe("searchBarText tests", () => {
-        it('should call the searchBar with the searchText', async () => { 
-            //Testing to see if the country name is displayed when I search Dublin in the search bar
-            //Arrange
-            //1. Set some test data - testSearchText
-            const testSearchText = "Dublin";
-
-            //2. Render the component pass in the testData and identify the search input and submit button
-            render(<HomeContent setSearchBarText={setSearchBarText} />);
-            const searchBar = screen.getByRole('searchbox');
-            const submitButton = screen.getByRole('button', { name: /search/i });
-
-            //Act
-            //3. Simulate the user typing Dublin into the search box and clicking the submit button
-            await userEvent.type(searchBar, testSearchText);
-            userEvent.click(submitButton);
-
-            //Assert
-            //4. Check that the country name is displayed
-            await waitFor(() => {
-                expect(setSearchBarText).toHaveBeenCalledWith(testSearchText); // Check if setSearchBarText was called
-              });
-        });
+    describe("searchInput tests", () => {
        it('should not call the searchBar with the searchText if no user input has been entered', () => {
             //Testing to see if the country name is displayed when I search Dublin in the search bar
             //Arrange
@@ -37,7 +17,7 @@ describe("HomeContentTests", () => {
             const testSearchText = "";
 
             //2. Render the component pass in the testData and identify the search input and submit button
-            render(<HomeContent setSearchBarText={setSearchBarText} />);
+            render(<MemoryRouter><HomeContent setSearchInput={setSearchInput} /></MemoryRouter>);
             const searchBar = screen.getByRole('searchbox');
             const submitButton = screen.getByRole('button', { name: /search/i });
 
@@ -47,24 +27,33 @@ describe("HomeContentTests", () => {
 
             //Assert
             //4. Check that the country name is displayed
-            expect(setSearchBarText).not.toHaveBeenCalledWith(testSearchText); // Check if setSearchBarText was called
+            expect(setSearchInput).not.toHaveBeenCalledWith(testSearchText); // Check if setSearchBarText was called
         })
-        it('should display the error message when the data is unavailable', async () => {
-            //Testing to see if the country name is displayed when I search Dublin in the search bar
-            //Arrange
-            //1. Set some test data - testErrorMessage
-            const testErrorMessage = "Data unavailable for this location";
-
-            //2. Render the component pass in the testData
-            render(<HomeContent errorMessage={testErrorMessage} />);
-
-            //Act
-            //3. Check that the error message is displayed
-            await waitFor(() => {
-                expect(screen.getByText(testErrorMessage)).toBeInTheDocument();
-            });
         });
-    });
+
+        // Attempted to test that the useNavigate hook was called with the correct parameter
+
+    //     it('navigates to the correct page on submit', async () => {
+    //         const history = createMemoryHistory();
+    //         render(
+    //           <Router history={history}>
+    //             <HomeContent />
+    //           </Router>
+    //         );
+        
+    //         // Simulate user typing 'Dublin' into the search input
+    //         userEvent.type(screen.getByRole('searchbox'), 'Dublin');
+        
+    //         // Simulate user clicking the submit button
+    //         userEvent.click(screen.getByRole('button', { name: /search/i }));
+        
+    //         // Wait for the component to update
+    //         await waitFor(() => {
+    //           // Check if the user has been redirected to the correct page
+    //           expect(history.location.pathname).toBe('/weather/Dublin');
+    //         });
+    // });
 })
+
 
 

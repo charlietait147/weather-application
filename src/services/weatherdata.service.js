@@ -3,9 +3,9 @@ import axios from "axios";
 
 export const getWeatherDataService = async (searchBarText) => {
     try{
-        if (!searchBarText) {
-            throw new Error("No search bar text");
-        }
+        // if (!searchBarText) {
+        //     throw new Error("No search bar text");
+        // }
 
         let apiUrl;
         if (process.env.NODE_ENV === "production") {

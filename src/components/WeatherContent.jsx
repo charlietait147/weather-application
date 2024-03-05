@@ -26,7 +26,7 @@ const WeatherContent = ({ date, icon, temp, weather_desc, countryName }) => {
       <h4 className="pt-5 text-sm-center">Todays Weather:</h4>
       <p className="text-sm-center">{date}</p>
       <div className="large-container">
-        <img className="mb-4" src={`/assets/weather-icons/${icon}.svg`}></img>
+        <img className="mb-4" src={`/assets/weather-icons/${icon}.svg`} alt="Weather Icon"></img>
         <div className="small-container">
           <p className="pe-sm-3">{temp}</p>
           <p>{weather_desc}</p>

@@ -12,7 +12,7 @@ const WeatherPage = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [countryName, setCountryName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  
+
   const fetchWeatherData = async () => {
     try {
       const response = await getWeatherDataService(id);
@@ -57,10 +57,12 @@ const WeatherPage = () => {
   }
 
   if (!currentDay) {
-    return <div>No weather available</div>;
+    return <div>Loading...</div>;
   }
 
   const { date, icon, temp, weather_desc } = currentDay; // destructure date, icon, temp and weather_desc from currentDay
+
+  console.log(currentDay);
 
   return (
     <div id="weather-container">
