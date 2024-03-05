@@ -1,10 +1,15 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import logo from "../assets/logo/logo.png";
 import searchIcon from "../assets/icons/search.svg";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
+
 
 const NavBar = () => {
   const [favourites, setFavourites] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedFavourites =
@@ -12,8 +17,7 @@ const NavBar = () => {
     setFavourites(storedFavourites); // Set the favourites state to the stored favourites
   }, []);
 
-  const [searchInput, setSearchInput] = useState("");
-  const navigate = useNavigate();
+
 
   const handleSearch = async (e) => {
     e.preventDefault();
