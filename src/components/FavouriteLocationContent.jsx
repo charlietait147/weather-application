@@ -12,10 +12,8 @@ const FavouriteLocationContent = () => {
   }, []);
 
   const clickHandler = (favouriteToRemove) => {
-    console.log("favourite removed");
     console.log(favouriteToRemove);
     const updatedFavourites = favourites.filter(favourite => favourite !== favouriteToRemove); // filter out the favouriteToRemove from the favourites array
-    // setFavourites([...updatedFavourites]); // update the favourites state
     setFavourites(updatedFavourites); // update the favourites state
     localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // update the favourites in local storage
   };
@@ -55,7 +53,7 @@ const FavouriteLocationContent = () => {
               >
                 <img
                   src={bookmarkIcon}
-                  alt="bookmark icon"
+                  alt="bookmark removal icon"
                   className="bg-secondary position-relative"
                   onClick={() => clickHandler(favourite)}
                 />

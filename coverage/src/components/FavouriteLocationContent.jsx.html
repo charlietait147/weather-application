@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>7/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">53.84% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -142,32 +142,28 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -229,26 +225,24 @@
 import "./FavouriteLocationContent.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-const FavouriteLocationContent = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-  const [favourites, setFavourites] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+const FavouriteLocationContent = () =&gt; {
+  const [favourites, setFavourites] = useState([]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+  useEffect(() =&gt; {
     const storedFavourites =
-<span class="cstat-no" title="statement not covered" >      JSON.parse(localStorage.getItem("favourites")) || []; // Retrieve existing favourites from local storage or initialize an empty array</span>
-<span class="cstat-no" title="statement not covered" >    setFavourites(storedFavourites); // Set the favourites state to the stored favourites</span>
+      JSON.parse(localStorage.getItem("favourites")) || []; // Retrieve existing favourites from local storage or initialize an empty array
+    setFavourites(storedFavourites); // Set the favourites state to the stored favourites
   }, []);
 &nbsp;
-  const clickHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(f</span>avouriteToRemove) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    console.log("favourite removed");</span>
+  const clickHandler = <span class="fstat-no" title="function not covered" >(f</span>avouriteToRemove) =&gt; {
 <span class="cstat-no" title="statement not covered" >    console.log(favouriteToRemove);</span>
     const updatedFavourites = <span class="cstat-no" title="statement not covered" >favourites.filter(<span class="fstat-no" title="function not covered" >favourite =&gt; <span class="cstat-no" title="statement not covered" >f</span>avourite !== favouriteToRemove)</span>; // filter out the favouriteToRemove from the favourites array</span>
-    // setFavourites([...updatedFavourites]); // update the favourites state
 <span class="cstat-no" title="statement not covered" >    setFavourites(updatedFavourites); // update the favourites state</span>
 <span class="cstat-no" title="statement not covered" >    localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // update the favourites in local storage</span>
   };
 &nbsp;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="location-container pt-4 vh-100"&gt;
       &lt;div className="background-overlay"&gt;&lt;/div&gt;
       &lt;div className="container"&gt;
@@ -275,14 +269,14 @@ const FavouriteLocationContent = <span class="cstat-no" title="statement not cov
 &nbsp;
         &lt;div className="row row-cols-sm-2 row-cols-md-3"&gt;
           {favourites.length &gt; 0 ? (
-            favourites.map(<span class="fstat-no" title="function not covered" >(f</span>avourite, index) =&gt; (
+<span class="branch-0 cbranch-no" title="branch not covered" >            favourites.map(<span class="fstat-no" title="function not covered" >(f</span>avourite, index) =&gt; (</span>
 <span class="cstat-no" title="statement not covered" >              &lt;div</span>
                 className="d-flex align-items-center justify-content-center py-2"
                 key={index}
               &gt;
                 &lt;img
                   src={bookmarkIcon}
-                  alt="bookmark icon"
+                  alt="bookmark removal icon"
                   className="bg-secondary position-relative"
                   onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >c</span>lickHandler(favourite)}</span>
                 /&gt;
@@ -313,7 +307,7 @@ export default FavouriteLocationContent;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-05T18:52:04.018Z
+                at 2024-03-06T09:55:15.357Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

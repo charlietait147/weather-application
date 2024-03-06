@@ -54,9 +54,9 @@ const NavBar = () => {
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item px-2">
-            <Link className="nav-link active" to="/" aria-current="page">
+            <a className="nav-link active" href="/" aria-current="page">
               Home
-            </Link>
+            </a>
           </li>
           <li className="nav-item px-2">
             <Link className="nav-link active" to="/favourite-locations" aria-current="page">

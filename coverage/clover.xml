@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1709664724030" clover="3.2.0">
-  <project timestamp="1709664724030" name="All files">
-    <metrics statements="107" coveredstatements="77" conditionals="33" coveredconditionals="21" methods="26" coveredmethods="16" elements="166" coveredelements="114" complexity="0" loc="107" ncloc="107" packages="4" files="11" classes="11"/>
+<coverage generated="1709718915367" clover="3.2.0">
+  <project timestamp="1709718915368" name="All files">
+    <metrics statements="106" coveredstatements="88" conditionals="33" coveredconditionals="27" methods="26" coveredmethods="19" elements="165" coveredelements="134" complexity="0" loc="106" ncloc="106" packages="4" files="11" classes="11"/>
     <package name="src">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="App.jsx" path="/Users/rorytait/Desktop/Digital_Futures/Challenges/travel-info-challenge/challenge-4-travel-info-charlietait147/src/App.jsx">
@@ -15,23 +15,22 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="77" coveredstatements="52" conditionals="25" coveredconditionals="14" methods="22" coveredmethods="13"/>
+      <metrics statements="76" coveredstatements="63" conditionals="25" coveredconditionals="20" methods="22" coveredmethods="16"/>
       <file name="FavouriteLocationContent.jsx" path="/Users/rorytait/Desktop/Digital_Futures/Challenges/travel-info-challenge/challenge-4-travel-info-charlietait147/src/components/FavouriteLocationContent.jsx">
-        <metrics statements="14" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
+        <metrics statements="13" coveredstatements="7" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="2"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="10" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
       </file>
       <file name="Footer.jsx" path="/Users/rorytait/Desktop/Digital_Futures/Challenges/travel-info-challenge/challenge-4-travel-info-charlietait147/src/components/Footer.jsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -72,14 +71,14 @@
         <line num="13" count="2" type="stmt"/>
       </file>
       <file name="WeatherContent.jsx" path="/Users/rorytait/Desktop/Digital_Futures/Challenges/travel-info-challenge/challenge-4-travel-info-charlietait147/src/components/WeatherContent.jsx">
-        <metrics statements="8" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="5" count="2" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="9" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
       </file>
       <file name="WeatherPage.jsx" path="/Users/rorytait/Desktop/Digital_Futures/Challenges/travel-info-challenge/challenge-4-travel-info-charlietait147/src/components/WeatherPage.jsx">
@@ -92,11 +91,11 @@
         <line num="16" count="3" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
-        <line num="19" count="2" type="cond" truecount="4" falsecount="1"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="4" falsecount="1"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
@@ -125,7 +124,7 @@
         <line num="12" count="0" type="stmt"/>
         <line num="14" count="3" type="stmt"/>
         <line num="19" count="3" type="stmt"/>
-        <line num="20" count="3" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
       </file>
     </package>
@@ -134,24 +133,24 @@
       <file name="WeatherDataHelper.js" path="/Users/rorytait/Desktop/Digital_Futures/Challenges/travel-info-challenge/challenge-4-travel-info-charlietait147/src/utils/WeatherDataHelper.js">
         <metrics statements="19" coveredstatements="19" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="10" type="stmt"/>
-        <line num="7" count="10" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
-        <line num="23" count="62" type="stmt"/>
-        <line num="24" count="62" type="stmt"/>
-        <line num="26" count="62" type="cond" truecount="4" falsecount="0"/>
-        <line num="27" count="8" type="stmt"/>
-        <line num="28" count="8" type="stmt"/>
-        <line num="31" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="31" type="stmt"/>
+        <line num="24" count="31" type="stmt"/>
+        <line num="26" count="31" type="cond" truecount="4" falsecount="0"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="31" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
       </file>
     </package>
   </project>
