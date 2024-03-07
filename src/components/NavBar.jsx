@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo/logo.png";
 import searchIcon from "../assets/icons/search.svg";
+
 
 
 
@@ -54,15 +56,24 @@ const NavBar = () => {
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item px-2">
-            <a className="nav-link active" href="/" aria-current="page">
+            <NavLink
+              className="nav-link"
+              to="/"
+              activeclassname="active"
+            >
               Home
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item px-2">
-            <Link className="nav-link active" to="/favourite-locations" aria-current="page">
+            <NavLink
+              className="nav-link"
+              to="/favourite-locations"
+              activeclassname="active"
+            >
               My Favourite Locations
-            </Link>
+            </NavLink>
           </li>
+    
           <li className="nav-item dropdown px-2">
             <Link
               className="nav-link dropdown-toggle"

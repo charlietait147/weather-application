@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import HomeContent from "./components/HomeContent";
 import FavouriteLocationContent from "./components/FavouriteLocationContent";
 import WeatherPage from "./components/WeatherPage";
-import { useState } from "react";
+
 
 const App = () => {
 

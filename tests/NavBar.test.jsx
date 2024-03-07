@@ -13,6 +13,8 @@ vi.mock("react-router-dom", () => {
     useNavigate: () => mockNavigate, // Mock useNavigate function
     MemoryRouter: ({ children }) => children,
     Link: ({ children }) => children,
+    NavLink: ({ children }) => children,
+
   };
 });
 
