@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
+
 import WeatherContent from "./WeatherContent";
 import WeatherCard from "./WeatherCard";
-import { useEffect, useState } from "react";
+
 import { getWeatherDataService } from "../services/weatherdata.service";
 import { updateState } from "../utils/WeatherDataHelper";
 import { useParams } from "react-router-dom";

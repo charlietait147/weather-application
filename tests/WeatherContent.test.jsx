@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import WeatherContent from "../src/components/WeatherContent";
-import { expect, it } from "vitest";
+import { expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 describe("WeatherContentTests", () => {
@@ -67,10 +67,7 @@ describe("WeatherContentTests", () => {
   });
   it("should add the current location to the favourites in local storage", async () => {
     //Arrange;
-    const mockLocalStorage = vi.spyOn(
-      window.localStorage.__proto__,
-      "setItem"
-    );
+    const mockLocalStorage = vi.spyOn(window.localStorage.__proto__, "setItem");
     render(<WeatherContent />);
     //Act
     const bookmarkIcon = screen.getByAltText("bookmark icon");
@@ -79,4 +76,16 @@ describe("WeatherContentTests", () => {
     //Assert
     expect(mockLocalStorage).toHaveBeenCalled();
   });
+  // describe("isClicked tests", () => {
+  //   it("the text should display added to favourites when the bookmark icon is clicked", async () => {
+  //     //Arrange;
+  //     render(<WeatherContent />);
+  //     const bookmarkIcon = screen.getByAltText("bookmark icon");
+  //     //Act
+  //     await userEvent.click(bookmarkIcon);
+
+  //     //Assert
+  //     expect(screen.getByText("Added to Favourites")).toBeInTheDocument();
+  //   });
+  // });
 });

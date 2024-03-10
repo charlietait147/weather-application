@@ -11,6 +11,8 @@ const FavouriteLocationContent = () => {
     setFavourites(storedFavourites); // Set the favourites state to the stored favourites
   }, []);
 
+  
+
   const clickHandler = (favouriteToRemove) => {
     console.log(favouriteToRemove);
     const updatedFavourites = favourites.filter(favourite => favourite !== favouriteToRemove); // filter out the favouriteToRemove from the favourites array

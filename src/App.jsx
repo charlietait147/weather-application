@@ -7,6 +7,7 @@ import FavouriteLocationContent from "./components/FavouriteLocationContent";
 import WeatherPage from "./components/WeatherPage";
 
 
+
 const App = () => {
 
   return (

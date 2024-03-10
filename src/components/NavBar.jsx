@@ -7,7 +7,6 @@ import searchIcon from "../assets/icons/search.svg";
 
 
 
-
 const NavBar = () => {
   const [favourites, setFavourites] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -18,8 +17,6 @@ const NavBar = () => {
       JSON.parse(localStorage.getItem("favourites")) || []; // Retrieve existing favourites from local storage or initialize an empty array
     setFavourites(storedFavourites); // Set the favourites state to the stored favourites
   }, []);
-
-
 
   const handleSearch = async (e) => {
     e.preventDefault();
