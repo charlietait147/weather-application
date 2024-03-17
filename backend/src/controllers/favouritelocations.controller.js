@@ -1,4 +1,5 @@
 import { getAllFavouriteLocationsService, addFavouriteLocationService, deleteFavouriteLocationService } from "../services/favouritelocations.services.js";
+import { validationResult } from "express-validator";
 
 export const getAllFavouriteLocationsController = async (req, res) => {
     try {
@@ -14,7 +15,7 @@ export const addFavouriteLocationController = async (req, res) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(422).send("Adding favourite location failed. Please check your input and try again.");
+            return res.status(400).send(errors.array().map(error => error.msg));
         }
         const { location } = req.body; // Get the location from the request body
         // Get the user ID from the request parameters
@@ -23,7 +24,7 @@ export const addFavouriteLocationController = async (req, res) => {
 
         res.status(200).json(updatedFavoriteLocations);
     } catch (error) {
-        res.status(400).send("Adding favourite location failed");
+        res.status(400).send("Adding favourite location failed" + error.message);
     }
 }
 
