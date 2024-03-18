@@ -2,11 +2,12 @@ import { check } from 'express-validator';
 
 export const userRegisterValidation = [
     check('username')
-        .exists()
-        .isLength({ min: 4, max: 20 })
-        .withMessage('Username must be between 4 and 20 characters'),
+        // .exists()
+        .isString()
+        .withMessage('Invalid username'),
     check('password')
         .exists()
+        .isString()
         .matches(/^\d{4,10}$/)
         .withMessage('Password must be between 4 and 10 digits')
 ];

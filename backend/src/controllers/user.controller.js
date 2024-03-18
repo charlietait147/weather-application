@@ -9,7 +9,8 @@ export const registerUserController = async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await registerUserService(username, password);
-        res.status(201).json(`${username} has been registered`);
+        res.status(201).json(user);
+
     } catch (error) {
         res.status(400).send("Registration failed");
     }

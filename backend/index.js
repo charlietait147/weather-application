@@ -30,16 +30,20 @@ app.use("/user", allFavouriteLocationsRouter);
 app.use("/user", addFavouriteLocationRouter);
 app.use("/user", deleteFavouriteLocationRouter);
 
+// const { PORT, HOST } = process.env;
 
-
-
+// const server = app.listen(PORT, HOST, () => {
+//     const SERVERHOST = server.address().address;
+//     const SERVERPORT = server.address().port;
+//     console.log(`Server is listening at http://${SERVERHOST}:${SERVERPORT}`);
+// });
 
 const { PORT, HOST } = process.env;
 
-const server = app.listen(PORT, HOST, () => {
-    const SERVERHOST = server.address().address;
-    const SERVERPORT = server.address().port;
-    console.log(`Server is listening at http://${SERVERHOST}:${SERVERPORT}`);
+const server = app.listen(PORT, () => {
+    console.log(`Server is listening at http://${HOST}:${PORT}`);
 });
+
+
 
 export default server;
