@@ -35,7 +35,7 @@ export const updatePasswordController = async (req, res) => {
     }
     try {
         const user = await updatePasswordService(req.body.newPassword, req.params._id);
-        res.status(200).json(`${user.username} has updated their password`);
+        res.status(200).json(user);
     } catch (error) {
         res.status(400).send("Password update failed");
     }

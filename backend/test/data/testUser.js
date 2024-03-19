@@ -1,18 +1,15 @@
 import bcrypt from 'bcrypt';
 const userData = {
-    userDataToImport : [
+    userDataToImport: [
         {
-            // _id: '5f5c330f6d3f5f0017b3e3e3',
+            _id: '5f5c4d9f8e3b8d0d9f6f4f4f',
             username: 'testUser',
             password: bcrypt.hashSync('12345', 10),
-            // password: "12345",
-            // favouriteLocations: [],
         },
         {
-            _id: '5f5c330f6d3f5f0017b3e3e4',
+            _id: '5f5c4d9f8e3b8d0d9f6f4f4e',
             username: 'testUser2',
-            password: "12345",
-            favouriteLocations: [],
+            password: bcrypt.hashSync("12345", 10),
         }
     ],
     wellFormedUser: {
@@ -30,8 +27,8 @@ const userData = {
         username: 1234,
         password: '12345',
     },
-    
-    
+
+
 }
 
 export default userData;

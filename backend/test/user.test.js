@@ -91,7 +91,7 @@ describe("Testing Requests on User Collection ", () => {
             // Act
             const res = await testServer
                 .post('/user/login')
-                .send({ username, password: '12345'});
+                .send({ username, password: '12345' });
 
             // Assert
             expect(res).to.have.status(201);
@@ -125,4 +125,40 @@ describe("Testing Requests on User Collection ", () => {
         });
     })
 
-});
+    describe(`PUT request to /user/:id`, () => {
+        it('should return 200 and the updated user when a well formed user is sent', async () => {
+            // Arrange
+            const { _id } = userDataToImport[0];
+            const updatedUser = { newPassword: '12345' };
+        
+            // Act
+            const res = await testServer
+                .put(`/user/${_id}/update-password`)
+                .send(updatedUser);
+
+            // Assert
+            expect(res).to.have.status(200);
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.have.property('username', userDataToImport[0].username);
+            expect(res.body).to.have.property('password');
+            
+        });
+
+        it('should return 400 when a user with a short password is sent', async () => {
+            // Arrange
+            const { _id } = userDataToImport[0];
+            const updatedUser = { newPassword: '123'};
+
+            // Act
+            const res = await testServer
+                .put(`/user/${_id}/update-password`)
+                .send(updatedUser);
+
+            // Assert
+            expect(res).to.have.status(400);
+            expect(res.text).to.equal('["New password must be between 4 and 10 digits"]');
+        });
+    });
+})
+
+
