@@ -18,8 +18,15 @@ export const loginUserService = async (username, password) => {
             throw new Error('User not found'); // throw an error
         }
 
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        // compare the password with the hashed password
+        let passwordMatch = false; // set passwordMatch to false initially
+
+        if (process.env.NODE_ENV === 'test') {
+            // If in a test environment, use compareSync without hashing
+            passwordMatch = bcrypt.compareSync(password, user.password);
+          } else {
+            // In production, use bcrypt.compare
+            passwordMatch = await bcrypt.compare(password, user.password);
+          }
 
         if (!passwordMatch) { // if the password does not match
             throw new Error('Invalid password'); // throw an error

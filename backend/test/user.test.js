@@ -83,4 +83,46 @@ describe("Testing Requests on User Collection ", () => {
         });
     })
 
+    describe(`POST request to /user/login`, () => {
+        it('should return 200 and a message when a well formed user is sent', async () => {
+            // Arrange
+            const { username, password } = userDataToImport[0];
+
+            // Act
+            const res = await testServer
+                .post('/user/login')
+                .send({ username, password: '12345'});
+
+            // Assert
+            expect(res).to.have.status(201);
+            expect(res.body).to.be.an('object');
+        });
+
+        it('should return 400 when a user with no username is sent', async () => {
+            // Arrange
+            const { password } = wellFormedUser;
+            // Act
+            const res = await testServer
+                .post('/user/login')
+                .send({ password });
+
+            // Assert
+            expect(res).to.have.status(400);
+            expect(res.text).to.equal('Login failed');
+        });
+
+        it('should return 400 when a user with a wrong password is sent', async () => {
+            // Arrange
+            const { username } = wellFormedUser;
+            // Act
+            const res = await testServer
+                .post('/user/login')
+                .send({ username, password: 'wrongPassword' });
+
+            // Assert
+            expect(res).to.have.status(400);
+            expect(res.text).to.equal('Login failed');
+        });
+    })
+
 });

@@ -1,10 +1,12 @@
+import bcrypt from 'bcrypt';
 const userData = {
     userDataToImport : [
         {
-            _id: '5f5c330f6d3f5f0017b3e3e3',
+            // _id: '5f5c330f6d3f5f0017b3e3e3',
             username: 'testUser',
-            password: "12345",
-            favouriteLocations: [],
+            password: bcrypt.hashSync('12345', 10),
+            // password: "12345",
+            // favouriteLocations: [],
         },
         {
             _id: '5f5c330f6d3f5f0017b3e3e4',

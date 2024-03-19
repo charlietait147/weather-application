@@ -20,9 +20,11 @@ export const loginUserController = async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await loginUserService(username, password);
-        res.status(200).json(`${username} has logged in`);
+        res.status(201).json(user);
     } catch (error) {
+        console.log(error.message);
         res.status(400).send("Login failed");
+
     }
 }
 
