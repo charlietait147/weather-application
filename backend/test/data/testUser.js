@@ -5,11 +5,16 @@ const userData = {
             _id: '5f5c4d9f8e3b8d0d9f6f4f4f',
             username: 'testUser',
             password: bcrypt.hashSync('12345', 10),
+            favouriteLocations : []
         },
         {
             _id: '5f5c4d9f8e3b8d0d9f6f4f4e',
             username: 'testUser2',
             password: bcrypt.hashSync("12345", 10),
+            favouriteLocations: [ {
+                location: "Dublin",
+                _id: '5f5c4d9f8e3b8d0d9f6f4f4e'
+            }]
         }
     ],
     wellFormedUser: {
@@ -27,6 +32,9 @@ const userData = {
         username: 1234,
         password: '12345',
     },
+    wellFormedLocation: {
+        location: 'Dublin'
+    }
 
 
 }

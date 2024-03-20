@@ -8,7 +8,8 @@ import User from '../src/models/user.model.js';
 
 const { request } = chai.use(chaiHttp);
 
-const { userDataToImport, wellFormedUser, userNoUsername, userShortPassword, userWrongTypeUsername } = userData;
+const { userDataToImport, wellFormedUser, userNoUsername, userShortPassword, userWrongTypeUsername, wellFormedLocation } = userData;
+
 
 describe("Testing Requests on User Collection ", () => {
 
@@ -130,7 +131,7 @@ describe("Testing Requests on User Collection ", () => {
             // Arrange
             const { _id } = userDataToImport[0];
             const updatedUser = { newPassword: '12345' };
-        
+
             // Act
             const res = await testServer
                 .put(`/user/${_id}/update-password`)
@@ -141,13 +142,13 @@ describe("Testing Requests on User Collection ", () => {
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.property('username', userDataToImport[0].username);
             expect(res.body).to.have.property('password');
-            
+
         });
 
         it('should return 400 when a user with a short password is sent', async () => {
             // Arrange
             const { _id } = userDataToImport[0];
-            const updatedUser = { newPassword: '123'};
+            const updatedUser = { newPassword: '123' };
 
             // Act
             const res = await testServer
@@ -159,6 +160,96 @@ describe("Testing Requests on User Collection ", () => {
             expect(res.text).to.equal('["New password must be between 4 and 10 digits"]');
         });
     });
+
+    describe(`GET request to /user/:userId/favourite-locations`, () => {
+        it('should return 200 and the favourite locations when a user with favourite locations is sent', async () => {
+            // Act
+
+            const { _id } = userDataToImport[1];
+            console.log(_id);
+            const res = await testServer
+                .get(`/user/${_id}/favourite-locations`);
+
+            console.log(res.body);
+
+            // Assert
+            expect(res).to.have.status(200);
+            expect(res.body).to.be.an('array');
+            expect(res.body[0]).to.have.property('location', 'Dublin');
+        });
+    });
+
+
+
+    describe(`POST request to /user/:userId/favourite-locations/add`, () => {
+        it('should return 201 and the favourite location when a well formed favourite location is sent', async () => {
+            // Arrange
+            const { _id } = userDataToImport[0];
+
+            // Act
+            const res = await testServer
+                .post(`/user/${_id}/favourite-locations/add`)
+                .send(wellFormedLocation);
+
+            // Assert
+            expect(res).to.have.status(201);
+            expect(res.body).to.be.an('array');
+            expect(res.body).to.have.length(1);
+            expect(res.body[0]).to.have.property('location', wellFormedLocation.location);
+        });
+
+        it('should return 400 when a favourite location with no location is sent', async () => {
+            // Arrange
+            const { _id } = userDataToImport[0];
+            const newFavouriteLocation = {};
+
+            // Act
+            const res = await testServer
+                .post(`/user/${_id}/favourite-locations/add`)
+                .send(newFavouriteLocation);
+
+            // Assert
+            expect(res).to.have.status(400);
+            expect(res.text).to.equal('Adding favourite location failed');
+        });
+    });
+
+    describe(`DELETE request to /user/:userId/favourite-locations/:locationId`, () => {
+        it('should return 200 and the favourite location when a well formed favourite location is sent', async () => {
+            // Arrange
+            const { _id } = userDataToImport[1];
+            const locationId = userDataToImport[1].favouriteLocations[0]._id;
+
+
+            // Act
+            const res = await testServer
+                .delete(`/user/${_id}/favourite-locations/${locationId}`);
+
+            // Assert
+            expect(res).to.have.status(201);
+            expect(res.body).to.be.an('array');
+            expect(res.body).to.have.length(0);
+        });
+
+        it('should return 400 when a favourite location with no location is sent', async () => {
+            // Arrange
+            const { _id } = userDataToImport[0];
+            const locationId = '5f5c4d9f8e3b8d0d9f6f4f4e';
+
+            // Act
+            const res = await testServer
+                .delete(`/user/${_id}/favourite-locations/${locationId}`);
+
+            // Assert
+            expect(res).to.have.status(400);
+            expect(res.text).to.equal('Failed to delete favourite location');
+        });
+    });
+
+
+
+
+
 })
 
 
