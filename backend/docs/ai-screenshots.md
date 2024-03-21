@@ -9,6 +9,7 @@
 
 ![Screenshot](../assets/screenshots/ai-screenshots/withMessage-function-validation.png)
 ![Screenshot](../assets/screenshots/ai-screenshots/bcrypt-hashing.png)
+![Screenshot](../assets/screenshots/ai-screenshots/understanding-bcrypt-compareSync.png)
 
 <h2>Validation</h2>
 
@@ -18,6 +19,8 @@
 <h2>Debugging</h2>
 
 ![Screenshot](../assets/screenshots/ai-screenshots/matching-passwords-bcrypt.png)
+![Screenshot](../assets/screenshots/ai-screenshots/debug-default-export.png)
+![Screenshot](../assets/screenshots/ai-screenshots/password-hashing-debug.png)
 
 
 

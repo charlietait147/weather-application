@@ -166,11 +166,9 @@ describe("Testing Requests on User Collection ", () => {
             // Act
 
             const { _id } = userDataToImport[1];
-            console.log(_id);
+
             const res = await testServer
                 .get(`/user/${_id}/favourite-locations`);
-
-            console.log(res.body);
 
             // Assert
             expect(res).to.have.status(200);
@@ -219,7 +217,6 @@ describe("Testing Requests on User Collection ", () => {
             // Arrange
             const { _id } = userDataToImport[1];
             const locationId = userDataToImport[1].favouriteLocations[0]._id;
-
 
             // Act
             const res = await testServer
