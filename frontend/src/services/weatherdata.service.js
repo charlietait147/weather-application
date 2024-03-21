@@ -1,21 +1,23 @@
 import axios from "axios";
 
-
 export const getWeatherDataService = async (searchBarText) => {
     try{
-        // if (!searchBarText) {
-        //     throw new Error("No search bar text");
-        // }
-
+    
         let apiUrl;
-        if (process.env.NODE_ENV === "production") {
-            apiUrl = (`${process.env.PRODUCTION_API_URL}?q=${searchBarText}&appid=${process.env.API_KEY}`);
+        if (import.meta.env.MODE === "production") {
+            apiUrl = (`${import.meta.env.VITE_APP_PRODUCTION_API_URL}?q=${searchBarText}&appid=${process.env.API_KEY}`);
         } else {
-            apiUrl = process.env.DEVELOPMENT_API_URL;
+            apiUrl = import.meta.env.VITE_APP_DEVELOPMENT_API_URL;
+        }
+        
+        // Testing purposes to ensure the correct URL is being called
+        if (apiUrl === import.meta.env.VITE_APP_DEVELOPMENT_API_URL) {
+            apiUrl = `http://localhost:3000/dublin`;
         }
     
     // const res = await axios.get(`${process.env.API_URL}?q=${searchBarText}&appid=${process.env.API_KEY}`
     // );
+
     const res = await axios.get(apiUrl);
     return res.data;
     }

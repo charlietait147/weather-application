@@ -55,8 +55,6 @@ WeatherContent.propTypes = {
   temp: PropTypes.number.isRequired,
   weather_desc: PropTypes.string.isRequired,
   countryName: PropTypes.string.isRequired,
-  setIsClicked: PropTypes.func.isRequired, // Ensure setIsClicked is a function prop
-  isClicked: PropTypes.bool.isRequired,
 };
 
 export default WeatherContent;
