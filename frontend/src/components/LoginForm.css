@@ -1,0 +1,15 @@
+.login-background-container{
+    background-color:rgb(181, 227, 222);
+}
+
+@media screen and (min-width: 576px) {
+   .login-background-container{
+            background: url("../assets/images/cloud-background.jpg");
+            background-position: center;
+            background-size: cover;
+            height: 600px;
+            overflow: hidden;
+            max-width: 100%;
+            position: relative;
+        }
+    }

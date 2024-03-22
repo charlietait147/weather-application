@@ -5,8 +5,6 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/logo/logo.png";
 import searchIcon from "../assets/icons/search.svg";
 
-
-
 const NavBar = () => {
   const [favourites, setFavourites] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -53,11 +51,7 @@ const NavBar = () => {
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item px-2">
-            <NavLink
-              className="nav-link"
-              to="/"
-              activeclassname="active"
-            >
+            <NavLink className="nav-link" to="/home" activeclassname="active">
               Home
             </NavLink>
           </li>
@@ -70,7 +64,7 @@ const NavBar = () => {
               My Favourite Locations
             </NavLink>
           </li>
-    
+
           <li className="nav-item dropdown px-2">
             <Link
               className="nav-link dropdown-toggle"
@@ -85,10 +79,11 @@ const NavBar = () => {
             </Link>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
               {favourites.map((favourite, index) => (
-              <li key={index}>
-                <Link to={`weather/${favourite}`} className="dropdown-item">
-                  {favourite}</Link>
-              </li>
+                <li key={index}>
+                  <Link to={`weather/${favourite}`} className="dropdown-item">
+                    {favourite}
+                  </Link>
+                </li>
               ))}
             </ul>
           </li>
@@ -101,18 +96,13 @@ const NavBar = () => {
             aria-label="Search"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-
           />
           <button
             disabled={!searchInput}
             onClick={handleSearch}
             style={{ border: "none", background: "none", cursor: "pointer" }}
           >
-            <img
-              src={searchIcon}
-              alt="search icon"
-              width={25}
-            />
+            <img src={searchIcon} alt="search icon" width={25} />
           </button>
         </div>
       </div>
@@ -121,5 +111,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-

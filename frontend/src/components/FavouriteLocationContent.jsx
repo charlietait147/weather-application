@@ -2,6 +2,7 @@ import bookmarkIcon from "../assets/icons/bookmark.svg";
 import "./FavouriteLocationContent.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import NavBar from "./NavBar";
 const FavouriteLocationContent = () => {
   const [favourites, setFavourites] = useState([]);
 
@@ -22,6 +23,8 @@ const FavouriteLocationContent = () => {
 
 
   return (
+    <>
+    <NavBar />
     <div className="location-container pt-4 vh-100">
       <div className="background-overlay"></div>
       <div className="container">
@@ -75,6 +78,8 @@ const FavouriteLocationContent = () => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 

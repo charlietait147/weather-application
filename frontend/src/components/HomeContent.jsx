@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./HomeContent.css";
+import NavBar from "./NavBar";
 
 
 const HomeContent = () => {
@@ -14,6 +15,8 @@ const HomeContent = () => {
   };
 
     return (
+      <>
+      <NavBar />
       <div className="background-image">
         <div className="background-overlay"></div>
         <h1 className="text-white position-relative mb-lg-3">
@@ -41,6 +44,7 @@ const HomeContent = () => {
           </button>
         </form>
       </div>
+      </>
     );
   
 };

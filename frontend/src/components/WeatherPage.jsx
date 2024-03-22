@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import WeatherContent from "./WeatherContent";
 import WeatherCard from "./WeatherCard";
+import NavBar from "./NavBar";
 
 import { getWeatherDataService } from "../services/weatherdata.service";
 import { updateState } from "../utils/WeatherDataHelper";
@@ -36,15 +37,18 @@ const WeatherPage = () => {
 
   if (errorMessage) {
     return (
-      <div className="container py-4 vh-100 d-flex flex-column justify-content-center align-items-center">
-        <h1 className="pb-3">{errorMessage}</h1>
-        <img
-          src={dataUnavailableImg}
-          alt="Data unavailable"
-          className="img-thumbnail"
-          style={{ width: 400, height: 400 }}
-        />
-      </div>
+      <>
+        <NavBar />
+        <div className="container py-4 vh-100 d-flex flex-column justify-content-center align-items-center">
+          <h1 className="pb-3">{errorMessage}</h1>
+          <img
+            src={dataUnavailableImg}
+            alt="Data unavailable"
+            className="img-thumbnail"
+            style={{ width: 400, height: 400 }}
+          />
+        </div>
+      </>
     ); // if errorMessage is true then return the error message
   }
 
@@ -67,20 +71,23 @@ const WeatherPage = () => {
   console.log(currentDay);
 
   return (
-    <div id="weather-container">
-      <WeatherContent
-        date={date}
-        icon={icon}
-        temp={temp}
-        weather_desc={weather_desc}
-        countryName={countryName}
-      />
-      <div className="row row-cols-2 row-cols-sm-4">
-        {weatherData.slice(1).map((day) => (
-          <WeatherCard {...day} key={new Date(day.date).getDay()} />
-        ))}
+    <>
+      <NavBar />
+      <div id="weather-container">
+        <WeatherContent
+          date={date}
+          icon={icon}
+          temp={temp}
+          weather_desc={weather_desc}
+          countryName={countryName}
+        />
+        <div className="row row-cols-2 row-cols-sm-4">
+          {weatherData.slice(1).map((day) => (
+            <WeatherCard {...day} key={new Date(day.date).getDay()} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
