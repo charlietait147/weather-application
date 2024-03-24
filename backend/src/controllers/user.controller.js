@@ -4,26 +4,29 @@ import { validationResult } from "express-validator";
 export const registerUserController = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).send(errors.array().map(error => error.msg));
+        return res.status(400).send( errors.array().map(error => error.msg));
     }
     try {
         const { username, password } = req.body;
         const user = await registerUserService(username, password);
+
         res.status(201).json(user);
 
     } catch (error) {
         res.status(400).send("Registration failed");
+        console.error("Registration failed", error);
     }
 }
 
 export const loginUserController = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await loginUserService(username, password);
+        const user = await loginUserService(username, password);;
+
         res.status(201).json(user);
     } catch (error) {
-        console.log(error.message);
         res.status(400).send("Login failed");
+        console.error("Login failed", error);
 
     }
 }

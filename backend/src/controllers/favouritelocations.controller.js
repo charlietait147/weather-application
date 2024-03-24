@@ -30,7 +30,8 @@ export const addFavouriteLocationController = async (req, res) => {
 
 export const deleteFavouriteLocationController = async (req, res) => {
     try {
-        const deletedFavouriteLocation = await deleteFavouriteLocationService(req.params.userId, req.params.locationId);
+        const { userId, locationId } = req.params;
+        const deletedFavouriteLocation = await deleteFavouriteLocationService(userId, locationId);
         // Call the service function to delete the location with the ID from the user's location
         res.status(201).json(deletedFavouriteLocation);
     } catch (error) {
