@@ -67,6 +67,7 @@ WeatherContent.propTypes = {
   temp: PropTypes.number.isRequired,
   weather_desc: PropTypes.string.isRequired,
   countryName: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default WeatherContent;

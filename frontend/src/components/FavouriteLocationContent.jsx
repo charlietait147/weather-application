@@ -41,21 +41,6 @@ const FavouriteLocationContent = ({userId, location}) => {
     getFavoriteLocations();
   }, [userId]);
       
-
-  // useEffect(() => {
-  //   const storedFavourites =
-  //     JSON.parse(localStorage.getItem("user.favouriteLocations")) || []; // Retrieve existing favourites from local storage or initialize an empty array
-  //   setFavourites(storedFavourites); // Set the favourites state to the stored favourites
-  // }, []);
-
-
-  // const clickHandler = (favouriteToRemove) => {
-  //   console.log(favouriteToRemove);
-  //   const updatedFavourites = favourites.filter(favourite => favourite !== favouriteToRemove); // filter out the favouriteToRemove from the favourites array
-  //   setFavourites(updatedFavourites); // update the favourites state
-  //   localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // update the favourites in local storage
-  // };
-
   //handleDelete function
 
   //1. The delete function should take the locationId and the favourite location as an argument.
