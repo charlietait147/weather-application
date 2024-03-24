@@ -12,7 +12,8 @@ vi.mock("react-router-dom", () => { // Mocking the react-router-dom module
     return {
       useNavigate: () => mockNavigate, // Mock useNavigate function
       MemoryRouter: ({ children}) => children,
-      Link: ({ children }) => children 
+      Link: ({ children }) => children,
+      NavLink: ({ children }) => children
     };
   });
 
@@ -30,8 +31,8 @@ describe("HomeContentTests", () => {
           <HomeContent setSearchInput={setSearchInput} />
         </MemoryRouter>
       );
-      const searchBar = screen.getByRole("searchbox");
-      const submitButton = screen.getByRole("button", { name: /search/i });
+      const searchBar = screen.getByTestId("home-content-search-bar");
+      const submitButton = screen.getByTestId("home-content-search-button");
 
       //Act
       //3. Simulate the user typing Dublin into the search box and clicking the submit button
@@ -53,12 +54,12 @@ describe("HomeContentTests", () => {
     );
 
     //Simulate User Input
-    const input = screen.getByRole("searchbox");
+    const input = screen.getByTestId("home-content-search-bar");
     fireEvent.change(input, { target: { value: testSearchText } });
 
     //Act
     //Simulate form submission
-    const submitButton = screen.getByRole("button", { name: /search/i });
+    const submitButton = screen.getByTestId("home-content-search-button");
     fireEvent.click(submitButton);
 
     //Assert
@@ -72,8 +73,8 @@ describe("HomeContentTests", () => {
       </MemoryRouter>
     );
 
-    const searchBar = screen.getByRole("searchbox");
-    const submitButton = screen.getByRole("button", { name: /search/i });
+    const searchBar = screen.getByTestId("home-content-search-bar");
+    const submitButton = screen.getByTestId("home-content-search-button");
     const searchText = "Dublin";
     const expectedPath = `/weather/${searchText}`;
 

@@ -2,15 +2,23 @@ import { useEffect, useState } from "react";
 
 import WeatherContent from "./WeatherContent";
 import WeatherCard from "./WeatherCard";
-import NavBar from "./NavBar";
 
 import { getWeatherDataService } from "../services/weatherdata.service";
 import { updateState } from "../utils/WeatherDataHelper";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./WeatherPage.css";
 import dataUnavailableImg from "../assets/images/data-unavailable-image.jpg";
 
-const WeatherPage = () => {
+const WeatherPage = ({userId}) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      navigate("/");
+    }
+    }, [navigate]);
+
   const { id } = useParams();
   const [weatherData, setWeatherData] = useState([]);
   const [countryName, setCountryName] = useState("");
@@ -38,7 +46,6 @@ const WeatherPage = () => {
   if (errorMessage) {
     return (
       <>
-        <NavBar />
         <div className="container py-4 vh-100 d-flex flex-column justify-content-center align-items-center">
           <h1 className="pb-3">{errorMessage}</h1>
           <img
@@ -72,7 +79,6 @@ const WeatherPage = () => {
 
   return (
     <>
-      <NavBar />
       <div id="weather-container">
         <WeatherContent
           date={date}
@@ -80,6 +86,7 @@ const WeatherPage = () => {
           temp={temp}
           weather_desc={weather_desc}
           countryName={countryName}
+          userId={userId}
         />
         <div className="row row-cols-2 row-cols-sm-4">
           {weatherData.slice(1).map((day) => (

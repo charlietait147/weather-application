@@ -28,15 +28,18 @@ const RegisterForm = () => {
       setError("Password must be between 4 and 10 characters");
       return;
     }
+
+    if (!/^\d+$/.test(password)) {
+      setError("Password must only contain numbers");
+      return;
+    }
+    
     try {
       const data = await register(username, password);
 
-      if (data?.error) {
-        setError(data.error);
-        return;
-      }
       console.log("User registered successfully", data);
       setMessage("User registered successfully");
+      setError(""); // Clear any previous errors
     } catch (error) {
       // Handle other errors
       setError("Registration failed");

@@ -1,30 +1,102 @@
 import bookmarkIcon from "../assets/icons/bookmark.svg";
 import "./FavouriteLocationContent.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import NavBar from "./NavBar";
-const FavouriteLocationContent = () => {
+import { fetchFavouriteLocations } from "../services/favouritelocations.service.js";
+import { deleteFavouriteLocation } from "../services/favouritelocations.service.js";
+
+const FavouriteLocationContent = ({userId, location}) => {
+  const navigate = useNavigate();
   const [favourites, setFavourites] = useState([]);
 
+
   useEffect(() => {
-    const storedFavourites =
-      JSON.parse(localStorage.getItem("favourites")) || []; // Retrieve existing favourites from local storage or initialize an empty array
-    setFavourites(storedFavourites); // Set the favourites state to the stored favourites
-  }, []);
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      navigate("/");
+    }
+    }, [navigate]);
 
-  
+    // const [favoriteLocations, setFavoriteLocations] = useState([]);
 
-  const clickHandler = (favouriteToRemove) => {
-    console.log(favouriteToRemove);
-    const updatedFavourites = favourites.filter(favourite => favourite !== favouriteToRemove); // filter out the favouriteToRemove from the favourites array
-    setFavourites(updatedFavourites); // update the favourites state
-    localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // update the favourites in local storage
-  };
+  useEffect(() => {
+    if (!userId) {
+      return; // If userId is null, do not fetch favorite locations
+    }
+
+    const getFavoriteLocations = async () => {
+      try {
+        const locations = await fetchFavouriteLocations(userId); // Fetch favorite locations for the user
+
+        const extractedLocations = locations.map((location) => location.location); // Extract the location from the response
+
+        setFavourites(extractedLocations); // Set the extracted locations to the favourites state
+
+      } catch (error) {
+        console.error(error);
+        // Handle error, e.g., show an error message to the user
+      }
+    };
+
+    getFavoriteLocations();
+  }, [userId]);
+      
+
+  // useEffect(() => {
+  //   const storedFavourites =
+  //     JSON.parse(localStorage.getItem("user.favouriteLocations")) || []; // Retrieve existing favourites from local storage or initialize an empty array
+  //   setFavourites(storedFavourites); // Set the favourites state to the stored favourites
+  // }, []);
+
+
+  // const clickHandler = (favouriteToRemove) => {
+  //   console.log(favouriteToRemove);
+  //   const updatedFavourites = favourites.filter(favourite => favourite !== favouriteToRemove); // filter out the favouriteToRemove from the favourites array
+  //   setFavourites(updatedFavourites); // update the favourites state
+  //   localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // update the favourites in local storage
+  // };
+
+  //handleDelete function
+
+  //1. The delete function should take the locationId and the favourite location as an argument.
+
+  //2. The delete function should call the deleteFavouriteLocation function with the userId and locationId.
+
+  //3. The favourite state should filter out the favourite which matches the location name. 
+
+  //4. The delete function should be called when the bookmark icon is clicked with the location name as an argument.
+
+
+const handleDelete = async (favourite) => {
+  try {
+    // Find the location object in the array of locations
+    const locationToDelete = location.find(loc => loc.location === favourite);
+
+    if (!locationToDelete) {
+      console.error("Location not found");
+      return;
+    }
+
+    console.log("Deleting location with ID:", locationToDelete._id);
+
+    // Call the delete function with the userId and locationId
+    await deleteFavouriteLocation(userId, locationToDelete._id);
+    
+    // Update the local state to reflect the deleted location
+    setFavourites(prevFavourites => prevFavourites.filter(loc => loc !== favourite));
+
+    console.log("Location deleted:", favourite);
+  } catch (error) {
+    console.error(error);
+    // Handle error, e.g., show an error message to the user
+  }
+};
+
+
 
 
   return (
     <>
-    <NavBar />
     <div className="location-container pt-4 vh-100">
       <div className="background-overlay"></div>
       <div className="container">
@@ -60,7 +132,7 @@ const FavouriteLocationContent = () => {
                   src={bookmarkIcon}
                   alt="bookmark removal icon"
                   className="bg-secondary position-relative"
-                  onClick={() => clickHandler(favourite)}
+                  onClick={() => handleDelete(favourite)}
                 />
                 <Link
                   to={`/weather/${favourite}`}

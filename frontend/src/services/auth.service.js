@@ -8,12 +8,7 @@ export const register = async (username, password) => {
 
         const data = await res.data;
 
-        if (res.status === 201) {
-            return data;
-        }
-        else {
-            throw new Error(data.error);
-        }
+        return data;
     }
     catch (error) {
         return { error: error.response.data.message } || "Registration failed";
@@ -25,6 +20,11 @@ export const login = async (username, password) => {
         const res = await axios.post(`${API_URL}/login`, { username, password });
 
         const data = await res.data;
+
+        if (res.status === 201) {
+            localStorage.setItem("user", JSON.stringify(data));
+            return data;
+        }
 
         return data;
     }

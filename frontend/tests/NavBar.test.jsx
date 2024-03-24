@@ -33,8 +33,8 @@ describe("NavBarTests", () => {
           <NavBar setSearchInput={setSearchInput} />
         </MemoryRouter>
       );
-      const searchBar = screen.getByRole("searchbox");
-      const submitButton = screen.getByRole("button", { name: /search/i });
+      const searchBar = screen.getByTestId("navbar-search-bar");
+      const submitButton = screen.getByTestId("navbar-search-button");
 
       //Act
       //3. Simulate the user typing Dublin into the search box and clicking the submit button

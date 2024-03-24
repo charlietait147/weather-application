@@ -4,6 +4,7 @@
 import { render } from "@testing-library/react";
 import FavouriteLocationContent from "../src/components/FavouriteLocationContent";
 import { describe } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 
 describe("FavouriteLocationContentTests", () => {
   describe("LocalStorage tests", () => {
@@ -14,7 +15,11 @@ describe("FavouriteLocationContentTests", () => {
         "getItem"
       );
       // Act
-      render(<FavouriteLocationContent />);
+      render(
+        <MemoryRouter>
+          <FavouriteLocationContent />
+        </MemoryRouter>
+      );
       // Assert
       expect(mockLocalStorage).toHaveBeenCalled();
     });
@@ -42,7 +47,11 @@ describe("FavouriteLocationContentTests", () => {
         "setItem"
       );
 
-      render(<FavouriteLocationContent />);
+      render(
+        <MemoryRouter>
+          <FavouriteLocationContent />
+        </MemoryRouter>
+      );
       // Act
       localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
 

@@ -1,13 +1,24 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate} from "react-router-dom";
 
 import "./HomeContent.css";
 import NavBar from "./NavBar";
 
 
+
 const HomeContent = () => {
+  
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      navigate("/");
+    }
+    }, [navigate]);
+
+
 
   const submitHandler = (e) => {
     e.preventDefault(); // prevent default form submission
@@ -16,7 +27,7 @@ const HomeContent = () => {
 
     return (
       <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="background-image">
         <div className="background-overlay"></div>
         <h1 className="text-white position-relative mb-lg-3">
@@ -34,10 +45,12 @@ const HomeContent = () => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             aria-label="Search"
+            data-testid="home-content-search-bar"
           />
           <button
             className="btn btn-success my-3 position-relative w-50"
             type="submit"
+            data-testid="home-content-search-button"
             disabled={!searchInput} // disable button if searchBarText is empty
           >
             Search
