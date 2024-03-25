@@ -33,7 +33,7 @@ const LoginForm = () => {
       navigate("/home");
     } catch (error) {
       console.log("Login error:", error.message);
-      setError(`Login failed: ${error.message}`);
+      setError("Login failed");
     }
   };
 

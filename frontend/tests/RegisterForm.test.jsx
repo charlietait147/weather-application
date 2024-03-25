@@ -18,7 +18,6 @@ vi.mock("react-router-dom", () => {
 describe("RegisterFormTests", () => {
   describe("Form input tests", () => {
     it("should not call the register function with the user data if no user input has been entered", () => {
-      //Testing to see if the country name is displayed when I search Dublin in the search bar
       //Arrange
       //1. Set some test data - testSearchText
       const testSearchText = "";
