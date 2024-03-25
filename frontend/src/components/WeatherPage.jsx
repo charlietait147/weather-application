@@ -9,7 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./WeatherPage.css";
 import dataUnavailableImg from "../assets/images/data-unavailable-image.jpg";
 
-const WeatherPage = ({userId}) => {
+const WeatherPage = ({userId, setFavourites, favourites, user}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -87,6 +87,9 @@ const WeatherPage = ({userId}) => {
           weather_desc={weather_desc}
           countryName={countryName}
           userId={userId}
+          setFavourites = {setFavourites}
+          favourites = {favourites}
+          user = {user}
         />
         <div className="row row-cols-2 row-cols-sm-4">
           {weatherData.slice(1).map((day) => (

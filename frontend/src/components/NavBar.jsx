@@ -37,7 +37,7 @@ const NavBar = ({userId}) => {
     };
 
     getFavoriteLocations();
-  }, [userId]);
+  }, [userId, favourites]);
 
   const handleSearch = async (e) => {
     e.preventDefault();

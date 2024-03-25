@@ -31,6 +31,7 @@ const FavouriteLocationContent = ({userId, location}) => {
         const extractedLocations = locations.map((location) => location.location); // Extract the location from the response
 
         setFavourites(extractedLocations); // Set the extracted locations to the favourites state
+        // setFavourites(locations);
 
       } catch (error) {
         console.error(error);
@@ -55,7 +56,10 @@ const FavouriteLocationContent = ({userId, location}) => {
 const handleDelete = async (favourite) => {
   try {
     // Find the location object in the array of locations
+
     const locationToDelete = location.find(loc => loc.location === favourite);
+
+    console.log("Location to delete:", locationToDelete);
 
     if (!locationToDelete) {
       console.error("Location not found");

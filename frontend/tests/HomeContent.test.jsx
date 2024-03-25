@@ -7,15 +7,15 @@ import { MemoryRouter } from "react-router-dom";
 const setSearchInput = vi.fn();
 const mockNavigate = vi.fn();
 
-
-vi.mock("react-router-dom", () => { // Mocking the react-router-dom module
-    return {
-      useNavigate: () => mockNavigate, // Mock useNavigate function
-      MemoryRouter: ({ children}) => children,
-      Link: ({ children }) => children,
-      NavLink: ({ children }) => children
-    };
-  });
+vi.mock("react-router-dom", () => {
+  // Mocking the react-router-dom module
+  return {
+    useNavigate: () => mockNavigate, // Mock useNavigate function
+    MemoryRouter: ({ children }) => children,
+    Link: ({ children }) => children,
+    NavLink: ({ children }) => children,
+  };
+});
 
 describe("HomeContentTests", () => {
   describe("searchInput tests", () => {
@@ -65,24 +65,41 @@ describe("HomeContentTests", () => {
     //Assert
     expect(input.value).toBe(testSearchText);
   });
-  it("should call useNavigate with the correct path when the submit button is clicked", async () => {
-    // Arrange
-    render(
-      <MemoryRouter>
-        <HomeContent />
-      </MemoryRouter>
-    );
+  describe("navigate tests", () => {
+    it("should call useNavigate with the correct path when the submit button is clicked", async () => {
+      // Arrange
+      render(
+        <MemoryRouter>
+          <HomeContent />
+        </MemoryRouter>
+      );
 
-    const searchBar = screen.getByTestId("home-content-search-bar");
-    const submitButton = screen.getByTestId("home-content-search-button");
-    const searchText = "Dublin";
-    const expectedPath = `/weather/${searchText}`;
+      const searchBar = screen.getByTestId("home-content-search-bar");
+      const submitButton = screen.getByTestId("home-content-search-button");
+      const searchText = "Dublin";
+      const expectedPath = `/weather/${searchText}`;
 
-    // Act
-    userEvent.type(searchBar, searchText);
-    userEvent.click(submitButton);
+      // Act
+      userEvent.type(searchBar, searchText);
+      userEvent.click(submitButton);
 
-    // Assert
-    expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+      // Assert
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
+    it("should navigate back to the home screen when there is no user in local storage", async () => {
+      // Arrange
+      localStorage.removeItem("user");
+
+      render(
+        <MemoryRouter>
+          <HomeContent />
+        </MemoryRouter>
+      );
+
+      // Act
+      await waitFor(() => {
+        expect(mockNavigate).toHaveBeenCalledWith("/");
+      });
+    });
   });
 });

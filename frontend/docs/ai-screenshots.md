@@ -14,10 +14,12 @@
 ![Screenshot](../src/assets/screenshots/vitest-testing-useNavigate.png)
 ![Screenshot](../src/assets/screenshots/vitest-spy-localStorage.png)
 ![Screenshot](../src/assets/screenshots/testing-duplicate-search-boxes.png)
+![Screenshot](../src/assets/screenshots/testing-front-end-services.png)
 
 <h2>Edge Cases</h2>
 
 ![Screenshot](../src/assets/screenshots/edge-cases-WeatherCard.png)
+![Screenshot](../src/assets/screenshots/testing-edge-cases-auth-services.png)
 
 <h2>Debugging</h2>
 
@@ -29,4 +31,5 @@
 <h2>Cleaner code</h2>
 
 ![Screenshot](../src/assets/screenshots/try-catch-reformat.png)
+
 

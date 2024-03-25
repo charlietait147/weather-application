@@ -1,15 +1,10 @@
 .background-container{
-    background-color:rgb(248, 252, 241);
+    background: url("../assets/images/dashboard-background.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    max-width: 100%;
+    position: relative;
 }
-
-@media screen and (min-width: 576px) {
-   .background-container{
-            background: url("../assets/images/cloud-background.jpg");
-            background-position: center;
-            background-size: cover;
-            height: 600px;
-            overflow: hidden;
-            max-width: 100%;
-            position: relative;
-        }
-    }
+    

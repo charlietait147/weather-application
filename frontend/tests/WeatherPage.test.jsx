@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import WeatherPage from "../src/components/WeatherPage";
 import { act } from "react-dom/test-utils";
 
+
 describe("WeatherPageTests", () => {
   it("should render the ID query parameter with the name of the location", async () => {
     //Arrange
@@ -58,5 +59,6 @@ it("should render loading text when the page is loading", async () => {
 
     // Assert
     expect(screen.getByText("Loading...")).toBeInTheDocument();
+
 });
 });

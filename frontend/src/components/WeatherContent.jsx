@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import bookmarkIcon from "../assets/icons/bookmark.svg";
 import { addFavouriteLocation } from "../services/favouritelocations.service";
 import "./WeatherContent.css";
+import { user } from "../../tests/data/testUserData";
 
 
 const WeatherContent = ({ date, icon, temp, weather_desc, countryName, userId }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [favourites, setFavourites] = useState([]);
   // const clickHandler = () => {
   //   // localStorage.setItem("favourite", countryName); // set countryName to localStorage
   //   const favourites = JSON.parse(localStorage.getItem("favourites")) || []; // Retrieve existing favourites from local storage or initialize an empty array
@@ -22,14 +24,23 @@ const WeatherContent = ({ date, icon, temp, weather_desc, countryName, userId })
 
   const clickHandler = async () => {
     try {
-      await addFavouriteLocation(userId, countryName);
-      
+      const response = await addFavouriteLocation(userId, countryName);
+      console.log(response);
+      if (response && response.location) {
+        // Update the local state to add the new favourite location
+        setFavourites(prevFavourites => [...prevFavourites, response.location]);
+      }
+      // setFavourites(response);
       setIsClicked(true);
+
+      console.log(favourites);
+      
     } catch (error) {
       console.error(error);
       // Handle error, e.g., show an error message to the user
     }
   };
+
 
   return (
     <div className="container pt-4 px-4">

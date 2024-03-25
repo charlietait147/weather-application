@@ -14,10 +14,8 @@ vi.mock("react-router-dom", () => {
     MemoryRouter: ({ children }) => children,
     Link: ({ children }) => children,
     NavLink: ({ children }) => children,
-
   };
 });
-
 
 describe("NavBarTests", () => {
   describe("searchInput tests", () => {
@@ -113,12 +111,31 @@ describe("NavBarTests", () => {
     //   // Assert
     //   // Check if the navigate function was called with the correct path
     //   await waitFor(() => {
-    //     expect(mockNavigate).toHaveBeenCalledWith("/");
+    //     expect(mockNavigate).toHaveBeenCalledWith("/home");
     //   });
     // });
   });
-});
+  describe("Local Storage tests", () => {
+    it("should delete the user from local storage when the logout button is clicked", async () => {
+      // Arrange
+      render(
+        <MemoryRouter>
+          <NavBar />
+        </MemoryRouter>
+      );
 
+      const logoutButton = screen.getByRole("button", { name: /Log Out/i });
+
+      // Act
+      userEvent.click(logoutButton);
+
+      // Assert
+      await waitFor(() => {
+        expect(localStorage.getItem("user")).toBeNull();
+      });
+    });
+  });
+});
 
 // it("should navigate to the My Favourite Locations Page when the My Favourite Locations link is clicked", async () => {
 //   // Arrange

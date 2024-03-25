@@ -1,10 +1,24 @@
 //1. Test
 //Check if the localstorage is called when the component is rendered
 
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import FavouriteLocationContent from "../src/components/FavouriteLocationContent";
 import { describe } from "vitest";
 import { MemoryRouter } from "react-router-dom";
+
+const mockNavigate = vi.fn();
+
+
+vi.mock("react-router-dom", () => {
+  // Mocking the react-router-dom module
+  return {
+    useNavigate: () => mockNavigate, // Mock useNavigate function
+    MemoryRouter: ({ children }) => children,
+    Link: ({ children }) => children,
+    NavLink: ({ children }) => children,
+  };
+});
+
 
 describe("FavouriteLocationContentTests", () => {
   describe("LocalStorage tests", () => {
@@ -60,6 +74,23 @@ describe("FavouriteLocationContentTests", () => {
         "favourites",
         JSON.stringify(updatedFavourites)
       );
+    });
+    describe("Navigation tests", () => {
+      it("should navigate back to the home screen when there is no user in local storage", async () => {
+        // Arrange
+        localStorage.removeItem("user");
+
+        render(
+          <MemoryRouter>
+            <FavouriteLocationContent />
+          </MemoryRouter>
+        );
+
+        // Act
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith("/");
+        });
+      });
     });
   });
 });

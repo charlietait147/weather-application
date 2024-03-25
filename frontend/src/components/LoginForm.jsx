@@ -38,12 +38,12 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-background-container">
+    // <div className="login-background-container">
       <div className="container p-5 d-flex flex-column justify-content-center align-items-center">
-        <h1 className="text-center py-2">Login</h1>
+        <h1 className="text-center py-2 text-white position-relative">Login</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="text-white positon-relative">Username</label>
             <input
               type="text"
               className="form-control"
@@ -52,8 +52,8 @@ const LoginForm = () => {
               onChange={handleUsernameChange}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+          <div className="form-group py-2">
+            <label htmlFor="password" className="text-white position-relative">Password</label>
             <input
               type="password"
               className="form-control"
@@ -68,7 +68,7 @@ const LoginForm = () => {
           {error && <div className="alert alert-danger mt-2">{error}</div>}
         </form>
       </div>
-    </div>
+    // </div>
   );
 };
 

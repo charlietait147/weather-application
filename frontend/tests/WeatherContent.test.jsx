@@ -3,6 +3,8 @@ import WeatherContent from "../src/components/WeatherContent";
 import { expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
+import { addFavouriteLocation } from "../src/services/favouritelocations.service";
+
 describe("WeatherContentTests", () => {
   describe("WeatherData tests", () => {
     it("should display the country name", async () => {
@@ -49,65 +51,29 @@ describe("WeatherContentTests", () => {
       });
     });
   });
-  // describe("LocalStorage tests", () => {
-  //   // it("should add the current location to the favourites in local storage", async () => {
-  //   //   //Arrange;
-  //   //   const mockLocalStorage = vi.spyOn(window.localStorage.__proto__, "setItem");
-  //   //   render(<WeatherContent />);
-  //   //   //Act
-  //   //   const bookmarkIcon = screen.getByAltText("bookmark icon");
-  //   //   await userEvent.click(bookmarkIcon);
+  it("should call addFavouriteLocation when the bookmark icon is clicked", async () => {
+    // Arrange
+    const userId = "user123";
+    const countryName = "Dublin";
 
-  //   //   //Assert
-  //   //   expect(mockLocalStorage).toHaveBeenCalled();
-  //   // });
-  //   it("should display added to favourites when the bookmark icon is clicked", async () => {
-  //     //Arrange;
-  //     render(<WeatherContent />);
-  //     const bookmarkIcon = screen.getByAltText("bookmark icon");
-  //     console.log(bookmarkIcon);
-  //     //Act
-  //     await userEvent.click(bookmarkIcon);
-
-  //     //Assert
-  //     expect(screen.getByText("Added to favourites")).toBeInTheDocument();
-  //   });
-
-  describe("clickHandler tests", () => {
-    it("should call addFavouriteLocation and display 'Added to favourites' when clicked", async () => {
-      // Arrange
-      // const addFavouriteLocation = vi.fn(); // Mock the addFavouriteLocation function
-      const userId = "user123";
-      const countryName = "Dublin";
-      render(
-        <WeatherContent
-          userId={userId}
-          countryName={countryName}
-          // addFavouriteLocation={addFavouriteLocation}
-        />
-      );
-      const bookmarkIcon = screen.getByAltText("bookmark icon");
-
-      // Act
-      await userEvent.click(bookmarkIcon);
-
-      // Assert
-      // expect(addFavouriteLocation).toHaveBeenCalledWith(userId, countryName);
-      expect(screen.getByText("Added to favourites")).toBeInTheDocument();
-    });
+    //Act
+    vi.mock("../src/services/favouritelocations.service", () => ({
+      addFavouriteLocation: vi.fn(), //mock addFavouriteLocation function
+    }));
+  
+    render(
+      <WeatherContent
+        userId={userId}
+        countryName={countryName}
+        
+      />
+    );
+    const bookmarkIcon = screen.getByAltText("bookmark icon");
+  
+    // Act
+    await userEvent.click(bookmarkIcon);
+  
+    // Assert
+    expect(addFavouriteLocation).toHaveBeenCalledWith(userId, countryName);
   });
 });
-
-// describe("isClicked tests", () => {
-//   it("the text should display added to favourites when the bookmark icon is clicked", async () => {
-//     //Arrange;
-//     render(<WeatherContent />);
-//     const bookmarkIcon = screen.getByAltText("bookmark icon");
-//     //Act
-//     await userEvent.click(bookmarkIcon);
-
-//     //Assert
-//     expect(screen.getByText("Added to Favourites")).toBeInTheDocument();
-//   });
-// });
-// });
